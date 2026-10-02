@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f5ed" />
+    <meta name="description" content="Hoa quả — game thả và ghép trái cây. Một khu vườn nhỏ, một chút khéo léo." />
+    <title>Hoa quả · Thả nhẹ, ghép vui</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2327483c'/%3E%3Cpath d='M32 49V28M32 34C13 34 13 12 13 12s21 0 19 22M32 29C32 12 52 13 52 13s0 18-20 16' stroke='%23d5e7a6' stroke-width='4' fill='none'/%3E%3C/svg%3E" />
+    <script type="module" crossorigin src="./assets/index-aO4rw1e-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BbTK2c-d.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Hoa quả, trang chủ"><span class="brand-mark">✳</span> hoa quả<span class="brand-dot">.</span></a>
+      <div class="header-note"><span class="status-dot"></span> một chút vui mỗi ngày</div>
+      <button id="help-button" class="icon-button" aria-label="Hướng dẫn chơi">?</button>
+    </header>
+    <main class="layout">
+      <aside class="intro">
+        <div class="eyebrow"><span></span> KHU VƯỜN CỦA BẠN</div>
+        <h1>Thả nhẹ.<br />Ghép <em>vui.</em></h1>
+        <p class="intro-copy">Từ một quả mọng bé xíu đến một quả dưa thật to. Khu vườn này lớn lên từ những lần chạm nhau.</p>
+        <div class="instruction-list">
+          <div><span class="step-number">01</span><p><strong>Chọn chỗ, rồi thả</strong><br />Di chuyển chuột hoặc kéo ngón tay.<br />Click hoặc nhả tay để thả xuống.</p></div>
+          <div><span class="step-number">02</span><p><strong>Chạm nhau là lớn lên</strong><br />Hai item cùng loại ghép thành một item lớn hơn.</p></div>
+          <div><span class="step-number">03</span><p><strong>Đừng vượt vạch nhé</strong><br />Vượt vạch liên tục 2 giây là kết thúc ván.</p></div>
+        </div>
+        <div class="garden-note"><span>✿</span><p>Không vội đâu.<br /><strong>Cứ tìm một chỗ vừa xinh.</strong></p></div>
+      </aside>
+      <section class="game-column" aria-label="Game thả và ghép item">
+        <div class="scoreboard">
+          <div class="score-current"><span class="small-label">ĐIỂM CỦA BẠN</span><strong id="score" aria-live="polite">0</strong></div>
+          <div class="score-best"><span class="small-label">✧ KỶ LỤC</span><strong id="best">0</strong></div>
+          <button id="pause-button" class="icon-button pause-button" aria-label="Tạm dừng">Ⅱ</button>
+        </div>
+        <div class="playfield" id="playfield">
+          <canvas id="game" width="440" height="670" tabindex="0" aria-label="Khung chơi. Di chuyển chuột rồi click để thả; dùng phím trái, phải và Space cũng được."></canvas>
+          <div id="danger-message" class="danger-message" role="status" hidden></div>
+          <div id="overlay" class="overlay" hidden>
+            <div class="overlay-card">
+              <div id="overlay-icon" class="overlay-icon">✿</div>
+              <div id="overlay-eyebrow" class="eyebrow">NGHỈ MỘT CHÚT</div>
+              <h2 id="overlay-title">Khu vườn đang nghỉ</h2>
+              <p id="overlay-copy">Sẵn sàng thì mình tiếp tục nhé.</p>
+              <button id="overlay-action" class="primary-button">Chơi tiếp <span>→</span></button>
+              <button id="overlay-secondary" class="text-button">Chơi lại từ đầu</button>
+            </div>
+          </div>
+        </div>
+        <div class="game-toolbar">
+          <div class="next-item"><canvas id="next-preview" width="60" height="60" aria-hidden="true"></canvas><div><span class="small-label">TIẾP THEO</span><strong id="next-name">Cherry</strong></div></div>
+          <button id="restart-button" class="restart-button"><span aria-hidden="true">↻</span> Chơi lại</button>
+        </div>
+        <p class="game-footnote"><span class="tiny-leaf">❧</span> Việt quất · Cherry · Chanh · Mận có tỷ lệ 40 · 30 · 20 · 10%</p>
+      </section>
+      <aside class="collection">
+        <div class="collection-header"><span class="eyebrow">TỪ NHỎ ĐẾN LỚN</span><span class="collection-count">10 loại</span></div>
+        <h2>Mỗi lần ghép,<br />một niềm vui.</h2>
+        <div id="item-list" class="item-list"></div>
+        <div class="collection-footer"><span>✧</span><p>Ghép thành item mới để nhận số điểm tương ứng. Dưa hấu là cấp cuối.</p></div>
+      </aside>
+    </main>
+    <footer class="site-footer"><span>Một khu vườn nhỏ. Một khoảng nghỉ vui.</span><span>Điểm cao nhất được lưu trên trình duyệt này.</span></footer>
+    <dialog id="help-dialog">
+      <button id="close-help" class="icon-button close-help" aria-label="Đóng hướng dẫn">×</button>
+      <span class="eyebrow">CHÀO MỪNG ĐẾN VƯỜN</span><h2>Chơi thật nhẹ nhàng.</h2>
+      <p>Di chuyển chuột hoặc kéo ngón tay để chọn vị trí. Click hoặc nhả tay để thả. Bạn cũng có thể dùng phím ← → và Space.</p>
+      <p>Hai item cùng loại chạm nhau sẽ ghép thành cấp kế tiếp. Chỉ lần ghép mới cộng điểm. Hai dưa hấu chạm nhau sẽ giữ nguyên.</p>
+      <p>Item vượt vạch liên tục <strong>2 giây</strong> sẽ kết thúc ván. Item mới thả được dành một khoảng ngắn để rơi xuống.</p>
+      <p>Điểm cao nhất lưu riêng trên trình duyệt. Không lưu ván đang chơi.</p>
+      <button id="help-done" class="primary-button">Đã hiểu, vào vườn thôi <span>→</span></button>
+    </dialog>
+  </body>
+</html>
